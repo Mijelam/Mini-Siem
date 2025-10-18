@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Mini SIEM - Real-Time Logs</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <meta http-equiv="refresh" content="2">
+</head>
+<body>
+<h1> Mini SIEM  Real-Time Log Monitor</h1>
+<h2 class="text-center text-light">
+
+    <span class="text-danger">Critical: <b th:text="${criticalCount}"></b></span> |
+    <span class="text-warning">Warning: <b th:text="${warningCount}"></b></span> |
+    <span class="text-success">Info: <b th:text="${infoCount}"></b></span>
+</h2>
+<table>
+    <thead class="text-uppercase">
+    <tr>
+        <th scope="col">Time</th>
+        <th scope="col">Source</th>
+        <th scope="col">Level</th>
+        <th scope="col">Message</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="e : ${events}"
+        th:classappend="${e.level} == 'CRITICAL' ? 'table-danger' :
+                                (${e.level} == 'WARNING' ? 'table-warning' : 'table-success')">
+        <td th:text="${#temporals.format(e.timestamp, 'HH:mm:ss')}"></td>
+        <td th:text="${e.source}"></td>
+        <td>
+            <span th:text="${e.level}"
+                  th:class="'level-badge level-' + ${e.level}"></span>
+        </td>
+        <td th:text="${e.message}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
