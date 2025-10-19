@@ -2,6 +2,9 @@
 
 Welcome to the Mini SIEM! This little project is a non-stop factory for fake security alerts. Using the power of Spring Boot, it generates a constant stream of log events and throws them onto a dashboard for you to watch. No real hackers, just pure simulation fun.
 
+![Mini SIEM Demo](src/main/resources/gif/Mini-siem-hq.gif)
+
+
 ## Features
 
 **Real-Time Event Generation**: A background process continuously creates new, randomized log events every 2 seconds.
